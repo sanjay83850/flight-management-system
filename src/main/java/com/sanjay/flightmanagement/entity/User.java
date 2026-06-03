@@ -2,6 +2,9 @@ package com.sanjay.flightmanagement.entity;
 
 import com.sanjay.flightmanagement.enums.Role;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -12,7 +15,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long user_id;
 
-    private String user_name;
+    private String userName;
 
     @Column(unique = true)
     private String user_email;
@@ -29,16 +32,12 @@ public class User {
         return user_id;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public String getUserName() {
+        return userName;
     }
 
-    public String getUser_name() {
-        return user_name;
-    }
-
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getUser_email() {
@@ -77,7 +76,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "user_id=" + user_id +
-                ", user_name='" + user_name + '\'' +
+                ", user_name='" + userName + '\'' +
                 ", user_email='" + user_email + '\'' +
                 ", user_password='" + user_password + '\'' +
                 ", role=" + role +
