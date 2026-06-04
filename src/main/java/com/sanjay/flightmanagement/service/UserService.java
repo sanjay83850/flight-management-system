@@ -13,4 +13,6 @@ public interface UserService {
     public List<UserResponseDto> getUser();
 
     public UserResponseDto updatePassword(Long id, UserRequestDto requestDto);
+
+    String verify(UserRequestDto requestDto);
 }

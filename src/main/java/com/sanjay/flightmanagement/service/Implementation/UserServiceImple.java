@@ -12,6 +12,9 @@ import com.sanjay.flightmanagement.mapper.UserMapper;
 import com.sanjay.flightmanagement.repository.UserRepository;
 import com.sanjay.flightmanagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +26,13 @@ public class UserServiceImple implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private JWTService jwtService;
+
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+
+    @Autowired
+    private AuthenticationManager authManager;
 
     @Override
     public UserResponseDto register(UserRequestDto requestDto) {
@@ -35,6 +44,17 @@ public class UserServiceImple implements UserService {
 
         //Entity to DTO
         return UserMapper.mapToUserResponseDto(savedUser);
+    }
+
+    @Override
+    public String verify(UserRequestDto requestDto) {
+        Authentication authentication =
+                authManager.authenticate(new UsernamePasswordAuthenticationToken(requestDto.getUserName(), requestDto.getUser_password()));
+
+        if(authentication.isAuthenticated())
+            return jwtService.generateToken(requestDto.getUserName());
+
+        return "Fail";
     }
 
     @Override

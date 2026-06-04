@@ -21,6 +21,11 @@ public class UserController {
         return userService.register(requestDto);
     }
 
+    @PostMapping("/login")
+    public String login(@RequestBody UserRequestDto requestDto) {
+        return userService.verify(requestDto);
+    }
+
     @GetMapping
     public List<UserResponseDto> getUser() {
         return userService.getUser();
