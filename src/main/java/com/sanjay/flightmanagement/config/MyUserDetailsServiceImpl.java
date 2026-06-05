@@ -1,7 +1,6 @@
-package com.sanjay.flightmanagement.service.Implementation;
+package com.sanjay.flightmanagement.config;
 
 import com.sanjay.flightmanagement.entity.User;
-import com.sanjay.flightmanagement.entity.UserPrincipal;
 import com.sanjay.flightmanagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

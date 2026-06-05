@@ -32,7 +32,7 @@ public class Flight {
 
     private BigDecimal price;
 
-    @OneToMany(mappedBy = "flight")
+    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL)
     private List<Booking> bookings;
 
     public Long getFlight_id() {

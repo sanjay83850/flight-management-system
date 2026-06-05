@@ -3,6 +3,7 @@ package com.sanjay.flightmanagement.mapper;
 import com.sanjay.flightmanagement.dto.request.UserRequestDto;
 import com.sanjay.flightmanagement.dto.response.UserResponseDto;
 import com.sanjay.flightmanagement.entity.User;
+import com.sanjay.flightmanagement.enums.Role;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UserMapper {
@@ -14,6 +15,7 @@ public class UserMapper {
         user.setUserName(requestDto.getUserName());
         user.setUser_email(requestDto.getUser_email());
         user.setUser_password(encoder.encode(requestDto.getUser_password()));
+        user.setRole(Role.USER);
 
         return user;
     }

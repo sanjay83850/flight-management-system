@@ -1,13 +1,9 @@
 package com.sanjay.flightmanagement.service.Implementation;
 
-import com.sanjay.flightmanagement.dto.request.FlightRequestDto;
+import com.sanjay.flightmanagement.config.JWTService;
 import com.sanjay.flightmanagement.dto.request.UserRequestDto;
-import com.sanjay.flightmanagement.dto.response.FlightResponseDto;
 import com.sanjay.flightmanagement.dto.response.UserResponseDto;
-import com.sanjay.flightmanagement.entity.Flight;
 import com.sanjay.flightmanagement.entity.User;
-import com.sanjay.flightmanagement.exception.FlightNotFoundException;
-import com.sanjay.flightmanagement.mapper.FlightMapper;
 import com.sanjay.flightmanagement.mapper.UserMapper;
 import com.sanjay.flightmanagement.repository.UserRepository;
 import com.sanjay.flightmanagement.service.UserService;

@@ -1,7 +1,5 @@
 package com.sanjay.flightmanagement.config;
 
-import com.sanjay.flightmanagement.service.Implementation.JWTService;
-import com.sanjay.flightmanagement.service.Implementation.MyUserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
