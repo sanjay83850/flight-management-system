@@ -27,6 +27,12 @@ public class SecurityConfig {
     @Autowired
     private MyUserDetailsServiceImpl myUserDetailsService;
 
+    @Autowired
+    private JwtAuthenticationEntryPoint authenticationEntryPoint;
+
+    @Autowired
+    private CustomAccessDeniedHandler accessDeniedHandler;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) {
 
@@ -57,7 +63,10 @@ public class SecurityConfig {
 
                             //Remaining APIs
                             .anyRequest().authenticated())
-                    //.httpBasic(Customizer.withDefaults())
+                    .exceptionHandling(exception -> exception
+                            .authenticationEntryPoint(authenticationEntryPoint)
+                            .accessDeniedHandler(accessDeniedHandler)
+                    )
                     .sessionManagement(session ->
                             session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                     .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
@@ -77,23 +86,4 @@ public class SecurityConfig {
             return config.getAuthenticationManager();
     }
 
-
-
-
-
-
-
-
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//
-//        UserDetails user1 = User
-//                .withDefaultPasswordEncoder()
-//                .username("cherry")
-//                .password("c@123")
-//                .roles("USER")
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(user1);
-//    }
 }

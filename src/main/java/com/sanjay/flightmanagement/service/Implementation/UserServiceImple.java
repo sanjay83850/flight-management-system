@@ -4,6 +4,7 @@ import com.sanjay.flightmanagement.config.JWTService;
 import com.sanjay.flightmanagement.dto.request.UserRequestDto;
 import com.sanjay.flightmanagement.dto.response.UserResponseDto;
 import com.sanjay.flightmanagement.entity.User;
+import com.sanjay.flightmanagement.exception.UserNotFoundException;
 import com.sanjay.flightmanagement.mapper.UserMapper;
 import com.sanjay.flightmanagement.repository.UserRepository;
 import com.sanjay.flightmanagement.service.UserService;
@@ -66,7 +67,7 @@ public class UserServiceImple implements UserService {
     public UserResponseDto updatePassword(Long id, UserRequestDto requestDto) {
         User existingUser = userRepository.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException("User not found"));
+                        new UserNotFoundException("User not found"));
 
         UserMapper.updateUser(requestDto, existingUser);
 
